@@ -13,7 +13,7 @@ function SideBar({sideMenuOpen, setSideMenuIsOpen}) {
                     <div className='w-full h-full flex items-center'>
                         <div className='w-full flex flex-col items-center text-justify'>
                             <h1 className='font-bold italic text-2xl'>Preserve</h1>
-                            <h2 className='font-thin'>Saving the planet</h2>
+                            <h2 className='font-thin text-xl'>Saving the planet</h2>
                         </div>
                          
 
