@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import EyeIconSlashed from '../assets/icons/eye-slashed.svg'
 import EyeIcon from '../assets/icons/eye.svg'
 
-function SignIn({showSignUp}) {
+function SignIn({setUserSignedIn, showSignUp}) {
   const [passwordVisible, setPasswordVisible] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -10,17 +10,21 @@ function SignIn({showSignUp}) {
   const validate = () => {
     const emailInput = document.getElementById('email')
     const passwordDiv = document.getElementById('password')
+    let isValid = true;
     //reset border colors
     emailInput.classList.remove('border-red-500')
     passwordDiv.classList.remove('border-red-500')
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
         emailInput.classList.remove('border-gray-200')
         emailInput.classList.add('border-red-500')
+        isValid = false;
     }
     if(password.length < 8){
         passwordDiv.classList.remove('border-gray-200')
         passwordDiv.classList.add('border-red-500')
+        isValid = false;
     }
+    if(isValid) setUserSignedIn()
   }
   return (
     <>
@@ -33,7 +37,7 @@ function SignIn({showSignUp}) {
             <img className='w-[24px] h-[24px]' alt='eye' src={passwordVisible ? EyeIcon : EyeIconSlashed} />
           </button>
       </div>
-      <button onClick={validate} type='button' className='max-w-sm mt-5 hover:bg-opacity-[.5] mb-5 w-full outline-none bg-preserve-secondary rounded-md p-4 flex items-center justify-center'>
+      <button onClick={validate} type='button' className='max-w-sm mt-5 hover:bg-opacity-[.5] mb-5 w-full outline-none bg-green-800 rounded-md p-4 flex items-center justify-center'>
             <span className='font-bold text-white'> Sign In </span>
       </button>
     </form>
