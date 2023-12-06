@@ -41,34 +41,36 @@ function SideBar({sideMenuOpen, setSideMenuIsOpen, setSelectedAccommodation, set
                     </div>
             </div>
             {/* Side Bar on Mobile */}
-            <div id="sidebar-mobile" className={`transition -translate-x-full p-4 w-1/2 h-full bg-green-800 z-20 absolute top-0 left-0 ${sideMenuOpen ? 'flex md:hidden' : 'hidden'} shadow-lg flex-col`}>
-                <div className='w-full flex justify-center'>
-                    <img onClick={hideMobileSideBar} src={logo} alt="logo" className='w-[64px] h-[64px] rounded-full shadow-lg cursor-pointer'/>
-                </div>
-                <div className='w-full h-full'>
-                    <form className='text-white flex flex-col items-center mt-10 ' name='search-form' onSubmit={(e)=> e.preventDefault()}>
-                        <label className='font-thin text-white mb-[5px]'>Acommodation</label>
-                        <div id='accommodation-container-mobile' className='mb-[10px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
-                                <select onChange={(e)=> setSelectedAccommodation(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
-                                        <option value={""}>---</option>
-                                        {
-                                        accommodations.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
-                                        }
-                                </select>
-                        </div>
-                     
-                        <label className='font-thin mb-[5px]'>Category</label>
-                         <div id='accommodation-container-mobile' className='mb-[5px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
-                                <select onChange={(e)=> setSelectedCategory(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
-                                        <option value={""}>---</option>
-                                        {
-                                        categories.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
-                                        }
-                                </select>
-                        </div>
+            <div onClick={hideMobileSideBar} id="sidebar-mobile" className={`${sideMenuOpen ? 'bg-black bg-opacity-10 z-10 absolute top-0 left-0 flex md:hidden' : 'hidden'} transition -translate-x-full w-screen h-screen`}>
+                <div onClick={(e) => e.stopPropagation()} className={`p-4 w-1/2 h-full bg-green-800 z-20 absolute top-0 left-0 ${sideMenuOpen ? 'flex md:hidden' : 'hidden'} shadow-lg flex-col`}>
+                    <div className='w-full flex justify-center'>
+                        <img onClick={hideMobileSideBar} src={logo} alt="logo" className='w-[64px] h-[64px] rounded-full shadow-lg cursor-pointer'/>
+                    </div>
+                    <div className='w-full h-full'>
+                        <form className='text-white flex flex-col items-center mt-10 ' name='search-form' onSubmit={(e)=> e.preventDefault()}>
+                            <label className='font-thin text-white mb-[5px]'>Acommodation</label>
+                            <div id='accommodation-container-mobile' className='mb-[10px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
+                                    <select onChange={(e)=> setSelectedAccommodation(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
+                                            <option value={""}>---</option>
+                                            {
+                                            accommodations.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
+                                            }
+                                    </select>
+                            </div>
                         
-                    </form>
-                  
+                            <label className='font-thin mb-[5px]'>Category</label>
+                            <div id='accommodation-container-mobile' className='mb-[5px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
+                                    <select onChange={(e)=> setSelectedCategory(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
+                                            <option value={""}>---</option>
+                                            {
+                                            categories.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
+                                            }
+                                    </select>
+                            </div>
+                            
+                        </form>
+                    
+                    </div>
                 </div>
             </div>
         </>
