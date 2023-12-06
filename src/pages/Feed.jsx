@@ -69,18 +69,30 @@ const Card = ({foodItem}) => {
     )
 }
 
-function Feed({userSignedIn}) {
-    useEffect(()=>{
+function Feed({userSignedIn, selectedCategory, selectedAccommodation}) {
+    useEffect(() => {
         const showFeed = () => {
             document.getElementById('feed').classList.remove('translate-x-1/2')
             document.getElementById('feed').classList.remove('opacity-0')
         }
         setTimeout(showFeed, 200)
     },[userSignedIn])
+
+    const filterFood = (foodItem) => {
+        if (selectedCategory.length === 0 && selectedAccommodation.length === 0) return true
+        const isInCategory = foodItem.category === selectedCategory;
+        const isInAccommodation = foodItem.accommodation === selectedAccommodation;
+
+        return isInAccommodation && isInCategory;
+    }
+    const filteredFoodItemList =  foodItemsList.filter(filterFood)
   return (
     <div id={'feed'} className='transition duration-500 opacity-0 translate-x-1/2 w-full h-full flex flex-row justify-start items-center overflow-x-scroll'>
       {
-        foodItemsList.map((foodItem, i) => <Card key={i} foodItem={foodItem} />)
+        filteredFoodItemList.length >  0 ?
+            filteredFoodItemList.map((foodItem, i) => <Card key={i} foodItem={foodItem} />)
+        :
+        <div className='w-full flex justify-center italic'>No Results Found</div>
       }
     </div>
   )

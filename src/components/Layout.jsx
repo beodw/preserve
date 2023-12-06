@@ -3,7 +3,7 @@ import logo from '../assets/logo/food-waste.png'
 import SideBar from './SideBar'
 import { accommodations, categories } from '../utils/data'
 
-function Layout({userSignedIn, children}) {
+function Layout({userSignedIn, children, setSelectedCategory, setSelectedAccommodation}) {
   let [sideMenuOpen, setSideMenuIsOpen] = useState(false)
   useEffect(() => {
       const showFeed = () => document.getElementById('desktop-filters').classList.remove('opacity-0')
@@ -24,7 +24,7 @@ function Layout({userSignedIn, children}) {
                         <div className='flex w-1/2 flex-col mr-2'>
                             <label className='font-bold italic'>Accommodation</label>
                              <div id='accommodation-container-desktop' className='shadow-lg flex w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
-                                  <select defaultValue={""} id="accommodation-desktop" className='font-thin w-full outline-none'>
+                                  <select onChange={(e)=> setSelectedAccommodation(e.target.value)} defaultValue={""} id="accommodation-desktop" className='font-thin w-full outline-none'>
                                           <option value={""}>---</option>
                                           {
                                             accommodations.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
@@ -35,10 +35,10 @@ function Layout({userSignedIn, children}) {
                         <div className='flex w-1/2 flex-col'>
                             <label className='font-bold italic'>Category</label>
                              <div id='category-container-desktop' className='shadow-lg flex w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
-                                  <select defaultValue={""} id="category-desktop" className='font-thin w-full outline-none'>
+                                  <select onChange={(e) => setSelectedCategory(e.target.value)} defaultValue={""} id="category-desktop" className='font-thin w-full outline-none'>
                                           <option value={""}>---</option>
                                           {
-                                            categories.map((category, i)=> <option key={i}>{category}</option>)
+                                            categories.map((category, i)=> <option value={category} key={i}>{category}</option>)
                                           }
                                   </select>
                               </div>

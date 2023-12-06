@@ -5,11 +5,13 @@ import LandingPage from './pages/LandingPage.jsx';
 
 function App() {
   const [userSignedIn, setUserSignedIn] =  useState(false)
+  const [selectedAccommodation, setSelectedAccommodation] =  useState("Angel Lane")
+  const [selectedCategory, setSelectedCategory] =  useState("Canned Food")
 
   return (
-    <Layout userSignedIn={userSignedIn}>
+    <Layout userSignedIn={userSignedIn} setSelectedCategory={setSelectedCategory} setSelectedAccommodation={setSelectedAccommodation}>
       {
-        userSignedIn ? <Feed userSignedIn={userSignedIn} /> : <LandingPage setUserSignedIn={()=> setUserSignedIn(true)}/>
+        userSignedIn ? <Feed selectedAccommodation={selectedAccommodation} selectedCategory={selectedCategory} userSignedIn={userSignedIn} /> : <LandingPage setUserSignedIn={()=> setUserSignedIn(true)}/>
       }
     </Layout>
   );
