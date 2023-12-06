@@ -14,7 +14,7 @@ function Layout({userSignedIn, children, setSelectedCategory, setSelectedAccommo
         {/* Layout with side bar and main content */}
         <div className='w-screen h-screen flex'>
            {/* Side Bar */}
-           <SideBar sideMenuOpen={sideMenuOpen} setSideMenuIsOpen={setSideMenuIsOpen}/>
+           <SideBar setSelectedAccommodation={setSelectedAccommodation} setSelectedCategory={setSelectedCategory} sideMenuOpen={sideMenuOpen} setSideMenuIsOpen={setSideMenuIsOpen}/>
             {/* Main Content */}
             <div className='w-full md:w-3/4 flex flex-col'>
               <div className='flex'>

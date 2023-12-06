@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import logo from '../assets/logo/food-waste.png'
 import { categories, accommodations } from '../utils/data'
 
-function SideBar({sideMenuOpen, setSideMenuIsOpen}) {
+function SideBar({sideMenuOpen, setSideMenuIsOpen, setSelectedAccommodation, setSelectedCategory}) {
     useEffect(()=>{
         const animateSideBar = () => document.getElementById('sidebar-desktop').classList.remove('-translate-x-full')
         setTimeout(animateSideBar, 100)
@@ -46,23 +46,25 @@ function SideBar({sideMenuOpen, setSideMenuIsOpen}) {
                     <img onClick={hideMobileSideBar} src={logo} alt="logo" className='w-[64px] h-[64px] rounded-full shadow-lg cursor-pointer'/>
                 </div>
                 <div className='w-full h-full'>
-                    <form className='flex flex-col items-center mt-10 justify-center' name='search-form' onSubmit={(e)=> e.preventDefault()}>
-                        <div className='flex flex-col items-center mb-[5px]'>
-                            <label className='font-thin mb-[5px]'>Acommodation</label>
-                            <select>
-                                {
-                                    accommodations.map((accommodation)=> <option key={accommodation}>{accommodation}</option>)
-                                }
-                            </select>
+                    <form className='text-white flex flex-col items-center mt-10 ' name='search-form' onSubmit={(e)=> e.preventDefault()}>
+                        <label className='font-thin text-white mb-[5px]'>Acommodation</label>
+                        <div id='accommodation-container-mobile' className='mb-[10px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
+                                <select onChange={(e)=> setSelectedAccommodation(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
+                                        <option value={""}>---</option>
+                                        {
+                                        accommodations.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
+                                        }
+                                </select>
                         </div>
                      
-                        <div className='flex flex-col items-center mt-[5px]'>
-                            <label className='font-thin mb-[5px]'>Category</label>
-                            <select>
-                                {
-                                    categories.map((category)=> <option key={category}>{category}</option>)
-                                }
-                            </select>
+                        <label className='font-thin mb-[5px]'>Category</label>
+                         <div id='accommodation-container-mobile' className='mb-[5px] flex flex-col items-center w-full border rounded-lg border-gray-200 p-2 md:p-2 outline-none'>
+                                <select onChange={(e)=> setSelectedCategory(e.target.value)} defaultValue={""} id="accommodation-mobile" className='font-thin w-full outline-none bg-transparent'>
+                                        <option value={""}>---</option>
+                                        {
+                                        categories.map((accommodation,i) => <option key={i} value={accommodation}>{accommodation}</option>)
+                                        }
+                                </select>
                         </div>
                         
                     </form>
